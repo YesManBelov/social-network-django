@@ -9,6 +9,7 @@ from .models import MyUser
 
 
 class UserCreationForm(forms.ModelForm):
+    username = forms.CharField(label="Username")
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
     password2 = forms.CharField(
         label="Password confirmation", widget=forms.PasswordInput
@@ -43,7 +44,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = MyUser
-        fields = ["id", "email", "password", "is_active", "is_admin"]
+        fields = ["id", "email", "username", "password", "is_active", "is_admin"]
 
 
 class UserAdmin(BaseUserAdmin):
@@ -67,7 +68,7 @@ class UserAdmin(BaseUserAdmin):
             None,
             {
                 "classes": ["wide"],
-                "fields": ["email", "password1", "password2"],
+                "fields": ["email", "username", "password1", "password2"],
             },
         ),
     ]
